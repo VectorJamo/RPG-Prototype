@@ -12,6 +12,7 @@ public abstract class Entity {
 	protected EntityType type;
 	protected Texture texture;
 	protected RectArea srcRect;
+	protected RectArea collisionRect;
 	
 	protected vec2 position, dimension;
 	protected vec2 velocity = new vec2(0.0f, 0.0f);
@@ -26,6 +27,7 @@ public abstract class Entity {
 		
 		velocity = new vec2(0.0f, 0.0f);
 		srcRect = new RectArea(new vec2(0.0f, 0.0f), new vec2(texture.getWidth(), texture.getHeight()));
+		collisionRect = new RectArea(new vec2(0.0f, 0.0f), dimension);
 
 		quad = new RenderableQuad(new RectArea(this.position, this.dimension), this.texture, srcRect, renderer);
 	}
@@ -37,6 +39,7 @@ public abstract class Entity {
 		
 		velocity = new vec2(0.0f, 0.0f);
 		this.srcRect = srcRect;
+		collisionRect = new RectArea(new vec2(0.0f, 0.0f), dimension);
 
 		quad = new RenderableQuad(new RectArea(this.position, this.dimension), this.texture, srcRect, renderer);
 	}
@@ -61,6 +64,9 @@ public abstract class Entity {
 	}
 	public vec2 getVelocity() {
 		return velocity;
+	}
+	public RectArea getCollideRect() {
+		return collisionRect;
 	}
 	public EntityType getEntityType() {
 		return type;
