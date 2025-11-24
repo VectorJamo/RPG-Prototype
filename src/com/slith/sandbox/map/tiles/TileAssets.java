@@ -31,6 +31,9 @@ public class TileAssets {
 					new vec2(TILE_WIDTH_IN_SHEET, TILE_HEIGHT_IN_SHEET));
 			
 			tileIdToTileInfo[i] = new Tile(i, tileSprite, srcRect);
+			if(i == 29) {
+				tileIdToTileInfo[i].isCollideable = true;
+			}
 		}
 	}
 }

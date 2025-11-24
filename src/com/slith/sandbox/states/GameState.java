@@ -34,6 +34,7 @@ public class GameState extends StateManager {
 		worldLayer = new TileLayer(window);
 		entityLayer = new EntityLayer(window);
 		uiLayer = new UILayer(window);
+		
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class GameState extends StateManager {
 		}
 		if(!isGamePaused) {
 			worldLayer.update();
-			entityLayer.update();
+			entityLayer.update(worldLayer.getTilemap());
 		}
 		uiLayer.update(isGamePaused);
 	}

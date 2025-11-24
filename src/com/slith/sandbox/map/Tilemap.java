@@ -100,4 +100,8 @@ public class Tilemap {
 		
 		tileRenderer.drawQuads();
 	}
+	
+	public Tile[][] getMap() {
+		return tileMap;
+	}
 }

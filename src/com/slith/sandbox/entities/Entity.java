@@ -6,6 +6,7 @@ import com.slith.engine.graphics.SimpleBatchRenderer;
 import com.slith.engine.graphics.Texture;
 import com.slith.engine.maths.vec2;
 import com.slith.engine.shapes.RectArea;
+import com.slith.sandbox.map.Tilemap;
 
 public abstract class Entity {
 
@@ -71,7 +72,7 @@ public abstract class Entity {
 	public EntityType getEntityType() {
 		return type;
 	}
-	public abstract void update(double deltaTime);
+	public abstract void update(double deltaTime, Tilemap map);
 	public abstract void pushIntoRenderer(SimpleBatchRenderer batchRenderer);
 	public abstract void removeFromRenderer(SimpleBatchRenderer batchRenderer);
 	

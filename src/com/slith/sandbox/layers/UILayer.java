@@ -16,7 +16,7 @@ public class UILayer extends Layer {
 	private boolean firstFramePaused = true;
 
 	public UILayer(Window window) {
-		super(window);
+		super(window, "UILayer");
 		
 		fontRenderer = new BMPFontRenderer(window, "res/images/ConsolasBMP.bmp");
 		pauseScreenText = new Text("PAUSED", new vec2(200.0f, 200.0f), 48, new Color(1.0f, 1.0f, 1.0f, 1.0f), fontRenderer);

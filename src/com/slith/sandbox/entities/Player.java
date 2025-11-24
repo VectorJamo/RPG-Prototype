@@ -8,6 +8,9 @@ import com.slith.engine.graphics.Window;
 import com.slith.engine.input.KeyManager;
 import com.slith.engine.maths.vec2;
 import com.slith.engine.shapes.RectArea;
+import com.slith.sandbox.map.Tilemap;
+import com.slith.sandbox.map.utils.CollisionDirection;
+import com.slith.sandbox.map.utils.CollisionHandler;
 import com.slith.sandbox.utils.Camera;
 
 public class Player extends Entity {
@@ -21,10 +24,13 @@ public class Player extends Entity {
 		
 		this.window = window;
 		worldPosition = new vec2(position.getX(), position.getY());
+		
+		this.collisionRect.setPosition(new vec2(8, 8));
+		this.collisionRect.setDimension(new vec2(16, 16));
 	}
 
 	@Override
-	public void update(double deltaTime) {
+	public void update(double deltaTime, Tilemap map) {
 		if(KeyManager.isKeyPressed((int)'W')) {
 			direction = "up";
 		}
@@ -66,6 +72,14 @@ public class Player extends Entity {
 			break;
 		}
 		
+		CollisionDirection status = CollisionHandler.checkEntityWorldCollision(this, worldPosition, map, deltaTime);
+		if(status.xCollision) {
+			velocity.setX(0);
+		}
+		if(status.yCollision) {
+			velocity.setY(0);
+		}
+		
 		worldPosition.setX((float)(worldPosition.getX() + deltaTime*velocity.getX()));
 		worldPosition.setY((float)(worldPosition.getY() + deltaTime*velocity.getY()));
 		
@@ -102,5 +116,9 @@ public class Player extends Entity {
 	@Override
 	public void removeFromRenderer(SimpleBatchRenderer batchRenderer) {
 		batchRenderer.removeQuad(quad);
+	}
+	
+	public vec2 getWorldPosition() {
+		return worldPosition;
 	}
 }
