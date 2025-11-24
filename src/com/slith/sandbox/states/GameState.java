@@ -39,6 +39,9 @@ public class GameState extends StateManager {
 
 	@Override
 	public void update() {
+		if(KeyManager.isKeyPressed(256)) { // The escape key
+			window.setWindowShouldClose();
+		}
 		if(KeyManager.isKeyPressed((int)'P')) {
 			isGamePaused = !isGamePaused;
 		}
